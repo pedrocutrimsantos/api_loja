@@ -1,0 +1,53 @@
+{
+  "realm": "loja",
+  "enabled": true,
+  "displayName": "Loja Realm",
+  "roles": {
+    "realm": [
+      {
+        "name": "ROLE_ADMIN"
+      },
+      {
+        "name": "ROLE_VENDEDOR"
+      },
+      {
+        "name": "ROLE_ESTOQUISTA"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "loja-backend",
+      "name": "Loja Backend",
+      "publicClient": false,
+      "secret": "secret",
+      "redirectUris": [
+        "*"
+      ],
+      "webOrigins": [
+        "*"
+      ],
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": true
+    }
+  ],
+  "users": [
+    {
+      "username": "admin",
+      "enabled": true,
+      "email": "admin@local",
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "ROLE_ADMIN"
+      ]
+    }
+  ]
+}
