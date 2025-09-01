@@ -4,6 +4,7 @@ import br.com.pauloneto.loja.core.BaseAuditable;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -14,7 +15,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class PosicaoEstoque extends BaseAuditable {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue
+    @org.hibernate.annotations.UuidGenerator
     private UUID id;
 
     @ManyToOne(optional = false) @JoinColumn(name = "produto_id")
@@ -23,12 +26,15 @@ public class PosicaoEstoque extends BaseAuditable {
     @ManyToOne(optional = false) @JoinColumn(name = "deposito_id")
     private Deposito deposito;
 
-    @Column(nullable = false)
-    private Double qtdDisponivel = 0.0;
+    @Column(nullable = false, precision = 19, scale = 3)
+    private BigDecimal qtdDisponivel = BigDecimal.ZERO;
 
-    @Column(nullable = false)
-    private Double qtdReservada = 0.0;
+    @Column(nullable = false, precision = 19, scale = 3)
+    private BigDecimal qtdReservada = BigDecimal.ZERO;
 
-    private Double minimo;
-    private Double maximo;
+    @Column(precision = 19, scale = 3)
+    private BigDecimal minimo;
+
+    @Column(precision = 19, scale = 3)
+    private BigDecimal maximo;
 }
