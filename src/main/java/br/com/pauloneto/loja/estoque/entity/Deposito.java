@@ -14,8 +14,12 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class Deposito extends BaseAuditable {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
-    @Column(nullable = false, unique = true, length = 120)
+
+    @Column(name = "nome", nullable = false, unique = true, length = 120)
     private String nome;
 }
